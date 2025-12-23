@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import MetallicPaint, { parseLogoImage } from "../components/MetallicPaint";
-const logo = "/alien.svg";
+import ScrollText from "../../components/ScrollText";
 
 export default function Home() {
-  const [imageData, setImageData] = useState<ImageData | null>(null);
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
 
   useEffect(() => {
@@ -15,20 +13,7 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    async function loadLogo() {
-      try {
-        const response = await fetch(logo);
-        const blob = await response.blob();
-        const file = new File([blob], "logo.svg", { type: blob.type });
-        const parsedData = await parseLogoImage(file);
-        setImageData(parsedData?.imageData ?? null);
-      } catch (err) {
-        console.error("Error loading logo:", err);
-      }
-    }
-    loadLogo();
-  }, []);
+
 
   const skills = [
     { name: "React", level: 95 },
@@ -81,24 +66,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center text-center px-8 pt-20">
-        {/* MetallicPaint Logo */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-60 pointer-events-none">
-          {imageData && (
-            <MetallicPaint
-              imageData={imageData}
-              params={{
-                edge: 2,
-                patternBlur: 0.005,
-                patternScale: 2,
-                refraction: 0.015,
-                speed: 0.3,
-                liquid: 0.07,
-              }}
-            />
-          )}
-        </div>
-
+      <section className="min-h-screen flex flex-col items-center justify-center text-center px-8 pt-20 transition-opacity duration-5000 ease-in-out">
         <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent relative z-10">
           John Doe
         </h1>
@@ -131,6 +99,16 @@ export default function Home() {
             </svg>
           </div>
         )}
+      </section>
+
+      {/* Scroll Animated Text Section */}
+      <section className="px-4 md:px-8">
+        <div className="max-w-5xl mx-auto">
+          <ScrollText
+            text="We believe in a world where technology fosters your everyday experiences. And our mission is to make it happen!"
+            className="text-center"
+          />
+        </div>
       </section>
 
       {/* Skills Section */}

@@ -1,4 +1,4 @@
-import GlassSurface from "../components/GlassSurface";
+import GlassSurface from "../../components/GlassSurface";
 
 const projects = [
   {

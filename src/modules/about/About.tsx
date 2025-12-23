@@ -1,10 +1,10 @@
-import GlassSurface from "../components/GlassSurface";
+import GlassSurface from "../../components/GlassSurface";
 
 export default function About() {
   return (
     <>
       {/* About Content */}
-      <div className="max-w-6xl mx-auto px-4 md:px-8 py-16">
+      <div className="max-w-6xl mx-auto px-4 md:px-8 py-16 transition-opacity duration-5000 ease-in-out">
         <h1 className="text-5xl md:text-7xl font-bold mb-16">About Me</h1>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
