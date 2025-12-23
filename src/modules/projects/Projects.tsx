@@ -2,28 +2,28 @@ import GlassSurface from "../../components/GlassSurface";
 
 const projects = [
   {
-    title: "E-Commerce Platform",
-    description: "A modern shopping experience with real-time inventory and smooth animations",
-    tags: ["React", "Node.js", "Stripe"],
-    color: ["#ff5c7a", "#ff8a5c"],
+    title: "SaaS Dashboard Platform",
+    description: "Enterprise-grade analytics dashboard with real-time data visualization and team collaboration features",
+    tags: ["React", "TypeScript", "Chart.js", "Tailwind"],
+    color: ["#6366f1", "#8b5cf6"],
   },
   {
-    title: "3D Portfolio",
-    description: "Interactive 3D portfolio website with custom WebGL shaders",
-    tags: ["Three.js", "WebGL", "GSAP"],
-    color: ["#5c7aff", "#5cffff"],
+    title: "E-Commerce Storefront",
+    description: "Full-stack e-commerce platform with cart management, payment integration, and admin panel",
+    tags: ["Next.js", "Stripe", "Prisma", "PostgreSQL"],
+    color: ["#ec4899", "#f43f5e"],
   },
   {
-    title: "Music Visualizer",
-    description: "Real-time audio visualization using Web Audio API and canvas",
-    tags: ["Canvas", "Web Audio", "React"],
-    color: ["#a855f7", "#ec4899"],
+    title: "Component Library",
+    description: "Accessible, customizable React component library with 50+ components and comprehensive documentation",
+    tags: ["React", "Storybook", "Radix UI", "CSS"],
+    color: ["#14b8a6", "#06b6d4"],
   },
   {
-    title: "AI Chat Interface",
-    description: "Beautiful chat interface with streaming responses and markdown support",
-    tags: ["TypeScript", "OpenAI", "Tailwind"],
-    color: ["#22c55e", "#14b8a6"],
+    title: "Task Management App",
+    description: "Collaborative task manager with drag-and-drop, real-time updates, and team workspaces",
+    tags: ["React", "Redux Toolkit", "Socket.io", "Node.js"],
+    color: ["#f59e0b", "#eab308"],
   },
 ];
 
@@ -34,7 +34,7 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto px-4 md:px-8 py-16">
         <h1 className="text-5xl md:text-7xl font-bold mb-6">Projects</h1>
         <p className="text-xl text-gray-400 mb-16 max-w-2xl">
-          A selection of my recent work, showcasing creative development and design
+          Showcasing React applications built with modern tools and best practices
         </p>
 
         {/* Projects Grid */}

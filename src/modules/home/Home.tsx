@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ScrollText from "../../components/ScrollText";
+import GradualBlurMemo from "@/components/GradualBlur";
+import ShapeBlur from "@/components/ShapeBlur";
 
 export default function Home() {
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
@@ -68,7 +70,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col items-center justify-center text-center px-8 pt-20 transition-opacity duration-5000 ease-in-out">
         <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent relative z-10">
-          John Doe
+          Muhammed Hussain
         </h1>
         <p className="text-xl md:text-2xl text-gray-400 mb-4 relative z-10">
           React.js Developer
@@ -105,7 +107,7 @@ export default function Home() {
       <section className="px-4 md:px-8">
         <div className="max-w-5xl mx-auto">
           <ScrollText
-            text="We believe in a world where technology fosters your everyday experiences. And our mission is to make it happen!"
+            text="Building exceptional user experiences with React. Crafting performant, scalable, and beautiful web applications that users love."
             className="text-center"
           />
         </div>
@@ -238,7 +240,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="px-4 md:px-8 py-12 border-t border-white/10">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-500">© 2024 John Doe. Built with React & Love.</p>
+          <p className="text-gray-500">© 2024 Muhammed Hussain. Built with React & Love.</p>
           <div className="flex gap-6">
             <a href="#" className="text-gray-400 hover:text-white transition-colors">GitHub</a>
             <a href="#" className="text-gray-400 hover:text-white transition-colors">LinkedIn</a>

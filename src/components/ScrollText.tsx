@@ -83,8 +83,8 @@ export default function ScrollText({ text, className = "" }: ScrollTextProps) {
         >
             {isInView && (
                 <div
-                    className="fixed inset-0 flex items-center justify-center pointer-events-none z-10 transition-opacity duration-500"
-                    style={{ opacity }}
+                    className="fixed inset-0 flex items-center justify-center pointer-events-none z-10 transition-all duration-500"
+                    style={{ opacity, filter: `blur(${blur}px)` }}
                 >
                     <p className="text-4xl md:text-6xl lg:text-7xl font-light leading-relaxed px-4 max-w-6xl">
                         {words.map((word, index) => (

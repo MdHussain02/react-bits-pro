@@ -1,5 +1,6 @@
 import { useState } from "react";
 import GlassSurface from "../../components/GlassSurface";
+import ShapeBlur from "@/components/ShapeBlur";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -16,13 +17,15 @@ export default function Contact() {
 
   return (
     <>
+
+
+
       {/* Contact Content */}
       <div className="max-w-4xl mx-auto px-4 md:px-8 py-16 transition-opacity duration-5000 ease-in-out">
         <h1 className="text-5xl md:text-7xl font-bold mb-6">Get in Touch</h1>
         <p className="text-xl text-gray-400 mb-16 max-w-2xl">
           Have a project in mind? Let's create something amazing together.
         </p>
-
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Form */}
           <GlassSurface
@@ -35,6 +38,7 @@ export default function Contact() {
             borderRadius={24}
           >
             <form onSubmit={handleSubmit} className="p-8 space-y-6">
+
               <div>
                 <label className="block text-sm font-medium mb-2">Name</label>
                 <input

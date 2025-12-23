@@ -1,6 +1,7 @@
-import { Link, Outlet } from "react-router-dom";
-import { useState, useEffect, lazy, Suspense } from "react";
 import { Menu, X } from "lucide-react";
+import { lazy, Suspense, useEffect, useState } from "react";
+import { Link, Outlet } from "react-router-dom";
+import GooeyNav from "./GooeyNav";
 
 // Lazy load ColorBends for better initial performance
 const ColorBends = lazy(() => import("./ColorBends"));
@@ -25,6 +26,18 @@ const Layout = () => {
             return () => clearTimeout(timer);
         }
     }, []);
+
+    // Prevent body scroll when menu is open
+    useEffect(() => {
+        if (isMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isMenuOpen]);
 
     return (
         <div className="bg-black text-white relative min-h-screen font-sans overflow-x-hidden">
@@ -56,45 +69,86 @@ const Layout = () => {
                 <Link to="/" className="text-2xl font-bold" onClick={() => setIsMenuOpen(false)}>
                     Portfolio
                 </Link>
-                <div className="hidden md:flex gap-8">
-                    <Link to="/" className="hover:text-gray-300 transition-colors">
-                        Home
-                    </Link>
-                    <Link to="/about" className="hover:text-gray-300 transition-colors">
-                        About
-                    </Link>
-                    <Link to="/projects" className="hover:text-gray-300 transition-colors">
-                        Projects
-                    </Link>
-                    <Link to="/contact" className="hover:text-gray-300 transition-colors">
-                        Contact
-                    </Link>
+                <div className="hidden md:block">
+                    <GooeyNav
+                        items={[
+                            { label: "Home", to: "/" },
+                            { label: "About", to: "/about" },
+                            { label: "Projects", to: "/projects" },
+                            { label: "Contact", to: "/contact" },
+                        ]}
+                    />
                 </div>
 
                 {/* Mobile Menu Toggle */}
-                <button className="md:hidden text-white z-50 p-2 cursor-pointer" onClick={toggleMenu}>
+                <button className="md:hidden text-white z-[10000] relative p-2 cursor-pointer" onClick={toggleMenu}>
                     {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
 
                 {/* Mobile Menu Overlay */}
                 {isMenuOpen && (
-                    <div className="fixed inset-0 bg-black/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8 md:hidden">
-                        <Link to="/" className="text-2xl font-semibold hover:text-purple-400 transition-colors" onClick={toggleMenu}>
-                            Home
-                        </Link>
-                        <Link to="/about" className="text-2xl font-semibold hover:text-purple-400 transition-colors" onClick={toggleMenu}>
-                            About
-                        </Link>
-                        <Link to="/projects" className="text-2xl font-semibold hover:text-purple-400 transition-colors" onClick={toggleMenu}>
-                            Projects
-                        </Link>
-                        <Link to="/contact" className="text-2xl font-semibold hover:text-purple-400 transition-colors" onClick={toggleMenu}>
-                            Contact
-                        </Link>
-                    </div>
+                    <>
+                        {/* Solid backdrop layer */}
+                        <div
+                            className="fixed inset-0 bg-black z-[9998] md:hidden"
+                            onClick={toggleMenu}
+                        />
+
+                        {/* Menu content */}
+                        <div
+                            className="fixed inset-0 z-[9999] md:hidden flex items-center justify-center"
+                            style={{ background: '#000000' }}
+                        >
+                            {/* Subtle gradient background */}
+                            <div
+                                className="absolute inset-0 opacity-20"
+                                style={{
+                                    background: 'radial-gradient(circle at 50% 50%, rgba(138, 92, 255, 0.3), transparent 60%)',
+                                }}
+                            />
+
+                            {/* Menu container */}
+                            <nav className="relative z-10 flex flex-col items-center gap-6 px-8">
+                                <Link
+                                    to="/"
+                                    className="text-xl font-semibold text-white hover:text-purple-400 transition-colors duration-200 py-2"
+                                    onClick={toggleMenu}
+                                >
+                                    Home
+                                </Link>
+                                <div className="w-16 h-px bg-white/10" />
+                                <Link
+                                    to="/about"
+                                    className="text-xl font-semibold text-white hover:text-purple-400 transition-colors duration-200 py-2"
+                                    onClick={toggleMenu}
+                                >
+                                    About
+                                </Link>
+                                <div className="w-16 h-px bg-white/10" />
+                                <Link
+                                    to="/projects"
+                                    className="text-xl font-semibold text-white hover:text-purple-400 transition-colors duration-200 py-2"
+                                    onClick={toggleMenu}
+                                >
+                                    Projects
+                                </Link>
+                                <div className="w-16 h-px bg-white/10" />
+                                <Link
+                                    to="/contact"
+                                    className="text-xl font-semibold text-white hover:text-purple-400 transition-colors duration-200 py-2"
+                                    onClick={toggleMenu}
+                                >
+                                    Contact
+                                </Link>
+                            </nav>
+
+                            {/* Subtle decorative elements */}
+                            <div className="absolute top-1/4 left-1/4 w-24 h-24 bg-purple-500/10 rounded-full blur-2xl" />
+                            <div className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-pink-500/10 rounded-full blur-2xl" />
+                        </div>
+                    </>
                 )}
             </nav>
-
             {/* Main Content Area */}
             <main className="relative z-10 pt-20">
                 <Outlet />
