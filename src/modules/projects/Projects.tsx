@@ -1,4 +1,5 @@
-import GlassSurface from "../../components/GlassSurface";
+
+import CardSwap, { Card } from "../../components/CardSwap";
 
 const projects = [
   {
@@ -31,51 +32,90 @@ export default function Projects() {
   return (
     <>
       {/* Projects Content */}
-      <div className="max-w-6xl mx-auto px-4 md:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-16">
         <h1 className="text-5xl md:text-7xl font-bold mb-6">Projects</h1>
         <p className="text-xl text-gray-400 mb-16 max-w-2xl">
           Showcasing React applications built with modern tools and best practices
         </p>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <GlassSurface
-              key={index}
-              width="100%"
-              height={280}
-              displace={0.15}
-              distortionScale={-140}
-              opacity={0.8}
-              brightness={50}
-              borderRadius={20}
-              redOffset={10}
-              blueOffset={15}
+        {/* Two Column Layout */}
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+          {/* Left Side - Description */}
+          <div className="space-y-6">
+            <h2 className="text-3xl font-bold">Featured Work</h2>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              Each project represents a unique challenge and solution, built with cutting-edge
+              technologies and modern development practices. From enterprise dashboards to
+              e-commerce platforms, these applications showcase expertise in React, TypeScript,
+              and full-stack development.
+            </p>
+            <p className="text-gray-400 leading-relaxed">
+              Hover over the cards to pause the animation and explore each project in detail.
+              Every application is crafted with attention to performance, accessibility, and
+              user experience.
+            </p>
+            <div className="pt-4">
+              <h3 className="text-xl font-semibold mb-3">Tech Stack Highlights</h3>
+              <ul className="space-y-2 text-gray-300">
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                  Modern React & TypeScript
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                  Full-Stack Development
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-teal-500 rounded-full"></span>
+                  Responsive Design
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
+                  Real-time Features
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Right Side - CardSwap */}
+          <div style={{ minHeight: '500px', position: 'relative', overflow: 'visible', paddingRight: '100px' }}>
+            <CardSwap
+              cardDistance={60}
+              verticalDistance={70}
+              delay={5000}
+              pauseOnHover={true}
+              width={500}
+              height={400}
             >
-              <div className="p-8 h-full flex flex-col justify-between">
-                <div>
-                  <div
-                    className="w-12 h-12 rounded-xl mb-4"
-                    style={{
-                      background: `linear-gradient(135deg, ${project.color[0]}, ${project.color[1]})`,
-                    }}
-                  />
-                  <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-gray-300">{project.description}</p>
-                </div>
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 bg-white/10 rounded-full text-sm"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </GlassSurface>
-          ))}
+              {projects.map((project, index) => (
+                <Card key={index}>
+
+                  <div className="p-8 h-full flex flex-col justify-between">
+                    <div>
+                      <div
+                        className="w-12 h-12 rounded-xl mb-4"
+                        style={{
+                          background: `linear-gradient(135deg, ${project.color[0]}, ${project.color[1]})`,
+                        }}
+                      />
+                      <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
+                      <p className="text-gray-300">{project.description}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-3 py-1 bg-white/10 rounded-full text-sm"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </CardSwap>
+          </div>
         </div>
       </div>
     </>
