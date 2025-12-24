@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ScrollText from "../../components/ScrollText";
-import GradualBlurMemo from "@/components/GradualBlur";
-import ShapeBlur from "@/components/ShapeBlur";
 
 export default function Home() {
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);

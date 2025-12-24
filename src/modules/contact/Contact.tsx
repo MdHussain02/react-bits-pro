@@ -1,6 +1,5 @@
 import { useState } from "react";
 import GlassSurface from "../../components/GlassSurface";
-import ShapeBlur from "@/components/ShapeBlur";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
